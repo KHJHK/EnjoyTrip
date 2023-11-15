@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.member.model.mapper.MemberMapper">
+
+    <resultMap type="memberDto" id="member">
+        <id column="user_no" property="userNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_password" property="userPassword"/>
+        <result column="user_name" property="userName"/>
+        <result column="email" property="email"/>
+        <result column="nickname" property="nickname"/>
+        <result column="birthday" property="birthday"/>
+        <result column="role" property="role"/>
+        <result column="status" property="status"/>
+        <result column="regist_date" property="registDate"/>
+        <result column="profile_image" property="profileImage"/>
+    </resultMap>
+
+    <select id="login" parameterType="memberDto" resultMap="member">
+        select user_no, user_id, user_name, nickname, role, profile_image
+        from members
+        where user_id = #{userId} and user_password = #{userPassword} and status = 0
+    </select>
+
+    <select id="getUserList" resultMap="member">
+        select *
+        from members
+    </select>
+
+    <insert id="regist" parameterType="memberDto">
+        insert into members (user_id, user_password, user_name,
+                             email, nickname, birthday,
+                             regist_date)
+        values(#{userId}, #{userPassword},#{userName},
+               #{email}, #{nickname}, #{birthday},
+               now());
+    </insert>
+
+    <select id="getUserByNo" parameterType="int" resultMap="member">
+        select *
+        from members
+        where user_no = #{userNo}
+    </select>
+
+    <update id="modifyUserInfo" parameterType="memberDto">
+        update members
+        set user_name = #{userName}, email = #{email}, nickname = #{nickname}, birthday = #{birthday}, profile_image=#{profileImage}
+        where user_no = #{userNo}
+
+    </update>
+
+    <update id="changeUserStatus" parameterType="memberDto">
+        update members
+        set status = #{status}
+        where user_no = #{userNo}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from members
+        where user_no = #{userNo}
+    </delete>
+
+
+</mapper>
