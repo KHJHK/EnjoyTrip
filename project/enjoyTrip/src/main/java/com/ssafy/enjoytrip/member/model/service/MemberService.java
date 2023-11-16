@@ -14,4 +14,6 @@ public interface MemberService {
     void modifyUserInfo(MemberDto memberDto);
     void changeUserStatus(MemberDto memberDto);
     void deleteUser(int userNo);
+    String findId(String userName, String email);
+    String findPassword(String userName, String email, String userId);
 }

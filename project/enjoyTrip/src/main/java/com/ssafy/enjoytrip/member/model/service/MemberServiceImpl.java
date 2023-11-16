@@ -63,4 +63,14 @@ public class MemberServiceImpl implements MemberService{
         memberMapper.deleteUser(userNo);
     }
 
+    @Override
+    public String findId(String userName, String email) {
+        return memberMapper.findId(userName, email);
+    }
+
+    @Override
+    public String findPassword(String userName, String email, String userId) {
+        return memberMapper.findPassword(userName, email, userId);
+    }
+
 }

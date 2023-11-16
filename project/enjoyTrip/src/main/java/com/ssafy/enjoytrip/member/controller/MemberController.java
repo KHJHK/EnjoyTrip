@@ -84,6 +84,25 @@ public class MemberController {
             return exceptionHandling(e);
         }
     }
+    @PostMapping("/id")
+    public ResponseEntity<?> findId(@RequestBody MemberDto memberDto){
+        try {
+            String id = memberService.findId(memberDto.getUserName(), memberDto.getEmail());
+            return new ResponseEntity<String>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
+    @PostMapping("/password")
+    public ResponseEntity<?> findPassword(@RequestBody MemberDto memberDto){
+        try {
+            String password = memberService.findPassword(memberDto.getUserName(), memberDto.getEmail(), memberDto.getUserId());
+            return new ResponseEntity<String>(password, HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
+
 
 
 

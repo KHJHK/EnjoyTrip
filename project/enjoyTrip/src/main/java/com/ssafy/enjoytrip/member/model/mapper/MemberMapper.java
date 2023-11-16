@@ -13,4 +13,7 @@ public interface MemberMapper {
     int modifyUserInfo(MemberDto memberDto);
     int changeUserStatus(MemberDto memberDto);
     int deleteUser(int userNo);
+    String findId(String userName, String email);
+    String findPassword(String userName, String email, String userId);
+
 }

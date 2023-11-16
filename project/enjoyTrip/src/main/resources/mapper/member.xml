@@ -62,5 +62,16 @@
         where user_no = #{userNo}
     </delete>
 
+    <select id="findId" parameterType="memberDto" resultType="string">
+        select user_id
+        from members
+        where user_name = #{userName} and email = #{email}
+    </select>
+
+    <select id="findPassword" parameterType="memberDto" resultType="string">
+        select user_password
+        from members
+        where user_name = #{userName} and email = #{email} and user_id = #{userId}
+    </select>
 
 </mapper>
