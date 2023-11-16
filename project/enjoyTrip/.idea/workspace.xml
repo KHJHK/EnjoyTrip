@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="project 복구">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
