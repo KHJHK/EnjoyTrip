@@ -6,10 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/notice")
@@ -28,6 +27,47 @@ public class NoticeController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> getNoticeList(){
+        try{
+            List<NoticeDto> noticeList = noticeService.getNoticeList();
+            return new ResponseEntity<List<NoticeDto>>(noticeList, HttpStatus.OK);
+        } catch (Exception e){
+            return exceptionHandling(e);
+        }
+    }
+
+    @GetMapping("/{noticeId}")
+    public ResponseEntity<?> getNoticeById(@PathVariable int noticeId){
+        try{
+            noticeService.increaseHit(noticeId);
+            NoticeDto notice = noticeService.getNoticeById(noticeId);
+            return new ResponseEntity<NoticeDto>(notice, HttpStatus.OK);
+        } catch (Exception e){
+            return exceptionHandling(e);
+        }
+    }
+
+    @PutMapping("/{noticeId}")
+    public ResponseEntity<?> modifyNotice(@RequestBody NoticeDto notice){
+        try{
+            System.out.println(notice.getNoticeTitle());
+            noticeService.modifyNotice(notice);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        } catch (Exception e){
+            return exceptionHandling(e);
+        }
+    }
+
+    @DeleteMapping("/{noticeId}")
+    public ResponseEntity<?> deleteNotice(@PathVariable int noticeId){
+        try{
+            noticeService.deleteNotice(noticeId);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        } catch (Exception e){
+            return exceptionHandling(e);
+        }
+    }
 
     private ResponseEntity<String> exceptionHandling(Exception e) {
         e.printStackTrace();
