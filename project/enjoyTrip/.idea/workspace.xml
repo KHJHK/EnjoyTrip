@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="project 복구">
+    <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="#12 - feat : boardService, controller 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "KHJ",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/SSAFY/EnjoyTrip/project/enjoyTrip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -111,7 +103,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700097415562</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#12 - feat : boardDto 및 mapper 구현">
+      <option name="closed" value="true" />
+      <created>1700110113785</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700110113785</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#12 - feat : boardService, controller 구현">
+      <option name="closed" value="true" />
+      <created>1700110129125</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700110129125</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,7 +142,9 @@
     </ignored-roots>
     <MESSAGE value="project 생성 완료" />
     <MESSAGE value="project 복구" />
-    <option name="LAST_COMMIT_MESSAGE" value="project 복구" />
+    <MESSAGE value="#12 - feat : boardDto 및 mapper 구현" />
+    <MESSAGE value="#12 - feat : boardService, controller 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="#12 - feat : boardService, controller 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
