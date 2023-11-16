@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="project 생성 완료">
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../document/enjoytrip.mwb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../document/trip api 설계.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/EnjoyTripApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/aop/LoggingAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/config/WebConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/member/controller/MemberController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/member/dto/MemberDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/member/model/mapper/MemberMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/java/com/ssafy/enjoytrip/member/model/service/MemberServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/main/resources/mapper/member.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../enjoyTrip/src/test/java/com/ssafy/enjoytrip/EnjoyTripApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2Y9TfZWRRjUjxRcCgTVquoGAvCv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/SSAFY/EnjoyTrip/project/enjoyTrip",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="EnjoyTripApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="enjoyTrip" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssafy.enjoytrip.EnjoyTripApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="" />
+      <created>1699936900934</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699936900934</updated>
+      <workItem from="1699936901877" duration="1402000" />
+      <workItem from="1699938312151" duration="291000" />
+      <workItem from="1699939086377" duration="11662000" />
+      <workItem from="1700007259204" duration="22385000" />
+      <workItem from="1700093763975" duration="3431000" />
+    </task>
+    <task id="LOCAL-00001" summary="project 생성 완료">
+      <option name="closed" value="true" />
+      <created>1699938089942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699938089942</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="project 생성 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="project 생성 완료" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
