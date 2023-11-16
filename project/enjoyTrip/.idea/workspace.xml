@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="#14 - refactor : MemberController debug용으로 사용하던 출력 코드 삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ssafy/enjoytrip/member/controller/MemberController.class" afterDir="false" />
     </list>
+=======
+    <list default="true" id="222cdf19-6643-49a3-a45a-3c7b7647993e" name="Changes" comment="#12 - feat : boardService, controller 구현" />
+>>>>>>> df4a7035ef46279fff9083364b335ac6eff0407e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +51,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;KHJ&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+>>>>>>> df4a7035ef46279fff9083364b335ac6eff0407e
     &quot;last_opened_file_path&quot;: &quot;C:/SSAFY/EnjoyTrip/project/enjoyTrip&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -105,6 +113,7 @@
       <option name="project" value="LOCAL" />
       <updated>1700097415562</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00003" summary="#14 - refactor : MemberController debug용으로 사용하던 출력 코드 삭제">
       <option name="closed" value="true" />
       <created>1700112299273</created>
@@ -114,6 +123,25 @@
       <updated>1700112299273</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+=======
+    <task id="LOCAL-00003" summary="#12 - feat : boardDto 및 mapper 구현">
+      <option name="closed" value="true" />
+      <created>1700110113785</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700110113785</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#12 - feat : boardService, controller 구현">
+      <option name="closed" value="true" />
+      <created>1700110129125</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700110129125</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+>>>>>>> df4a7035ef46279fff9083364b335ac6eff0407e
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,8 +164,14 @@
     </ignored-roots>
     <MESSAGE value="project 생성 완료" />
     <MESSAGE value="project 복구" />
+<<<<<<< HEAD
     <MESSAGE value="#14 - refactor : MemberController debug용으로 사용하던 출력 코드 삭제" />
     <option name="LAST_COMMIT_MESSAGE" value="#14 - refactor : MemberController debug용으로 사용하던 출력 코드 삭제" />
+=======
+    <MESSAGE value="#12 - feat : boardDto 및 mapper 구현" />
+    <MESSAGE value="#12 - feat : boardService, controller 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="#12 - feat : boardService, controller 구현" />
+>>>>>>> df4a7035ef46279fff9083364b335ac6eff0407e
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
