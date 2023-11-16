@@ -19,4 +19,32 @@
         (board_id, user_no, notice_title, notice_content, notice_post_date)
         values (#{boardId},#{userNo},#{noticeTitle},#{noticeContent}, now())
     </insert>
+
+    <select id="getNoticeList" resultMap="notice">
+        select *
+        from notices
+    </select>
+
+    <select id="getNoticeById" parameterType="int" resultMap="notice">
+        select *
+        from notices
+        where notice_id = #{noticeId}
+    </select>
+
+    <update id="increaseHit" parameterType="int">
+        update notices
+        set notice_hits = notice_hits + 1
+        where notice_id = #{noticeId}
+    </update>
+
+    <update id="modifyNotice" parameterType="noticeDto">
+        update notices
+        set notice_title = #{noticeTitle}, notice_content = #{noticeContent}
+        where notice_id = #{noticeId}
+    </update>
+
+    <delete id="deleteNotice" parameterType="int">
+        delete from notices
+        where notice_id = #{noticeId}
+    </delete>
 </mapper>
