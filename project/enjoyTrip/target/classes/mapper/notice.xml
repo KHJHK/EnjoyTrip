@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.board.model.mapper.NoticeMapper">
+    <resultMap id="notice" type="noticeDto">
+        <id column="notice_id" property="noticeId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="user_no" property="userNo"/>
+        <result column="notice_title" property="noticeTitle"/>
+        <result column="notice_content" property="noticeContent"/>
+        <result column="notice_post_date" property="noticePostDate"/>
+        <result column="notice_hits" property="noticeHits"/>
+    </resultMap>
+    
+    <insert id="postNotice" parameterType="noticeDto">
+        insert
+        into notices
+        (board_id, user_no, notice_title, notice_content, notice_post_date)
+        values (#{boardId},#{userNo},#{noticeTitle},#{noticeContent}, now())
+    </insert>
+</mapper>

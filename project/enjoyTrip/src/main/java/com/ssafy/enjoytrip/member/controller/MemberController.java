@@ -41,7 +41,6 @@ public class MemberController {
     public ResponseEntity<?> regist(@RequestBody MemberDto memberDto){
 
         try {
-            System.out.println("aa " + memberDto.toString());
             memberService.regist(memberDto);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
