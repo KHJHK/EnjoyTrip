@@ -29,7 +29,7 @@
     <insert id="postQuestion" parameterType="questionDto">
         insert into questions
         (board_id, user_no, question_title, question_content, question_post_date, question_secret)
-        values (#{boardId}, #{userNo}, #{questionTitle}, #{questionContent}, now(), #{questionSecret});
+        values (4, #{userNo}, #{questionTitle}, #{questionContent}, now(), #{questionSecret});
     </insert>
 
     <update id="modifyQuestion" parameterType="questionDto">

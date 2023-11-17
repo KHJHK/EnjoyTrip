@@ -27,7 +27,7 @@
         insert into answers
             (question_id, board_id, user_no, answer_title, answer_content, answer_post_date)
         values
-            (#{questionId}, #{boardId}, #{userNo}, #{answerTitle}, #{answerContent}, now());
+            (#{questionId}, 5, #{userNo}, #{answerTitle}, #{answerContent}, now());
     </insert>
 
     <update id="modifyAnswer" parameterType="answerDto">

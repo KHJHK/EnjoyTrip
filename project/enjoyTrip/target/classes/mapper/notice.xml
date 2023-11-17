@@ -17,7 +17,7 @@
         insert
         into notices
         (board_id, user_no, notice_title, notice_content, notice_post_date)
-        values (#{boardId},#{userNo},#{noticeTitle},#{noticeContent}, now())
+        values (1,#{userNo},#{noticeTitle},#{noticeContent}, now())
     </insert>
 
     <select id="getNoticeList" resultMap="notice">
