@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.board.model.mapper.QuestionMapper">
+
+    <resultMap id="question" type="questionDto">
+        <id column="question_id" property="questionId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="user_no" property="userNo"/>
+        <result column="question_title" property="questionTitle"/>
+        <result column="question_content" property="questionContent"/>
+        <result column="question_post_date" property="questionPostDate"/>
+        <result column="question_secret" property="questionSecret"/>
+        <result column="question_hits" property="questionHits"/>
+    </resultMap>
+
+    <select id="getQuestionList" resultMap="question">
+        select *
+        from questions;
+    </select>
+
+    <select id="getQuestionById" parameterType="int" resultMap="question">
+        select *
+        from questions
+        where question_id = #{questionId}
+    </select>
+
+    <insert id="postQuestion" parameterType="questionDto">
+        insert into questions
+        (board_id, user_no, question_title, question_content, question_post_date, question_secret)
+        values (#{boardId}, #{userNo}, #{questionTitle}, #{questionContent}, now(), #{questionSecret});
+    </insert>
+
+    <update id="modifyQuestion" parameterType="questionDto">
+        update questions
+        set question_title = #{questionTitle}, question_content = #{questionContent}, question_secret = #{questionSecret}
+        where question_id = #{questionId}
+    </update>
+
+    <delete id="deleteQuestion" parameterType="int">
+        delete from questions
+        where question_id = #{questionId}
+    </delete>
+
+    <update id="increaseHit" parameterType="int">
+        update questions
+        set question_hits = question_hits + 1
+        where question_id = #{questionId}
+    </update>
+
+</mapper>

@@ -48,10 +48,9 @@ public class NoticeController {
         }
     }
 
-    @PutMapping("/{noticeId}")
+    @PutMapping
     public ResponseEntity<?> modifyNotice(@RequestBody NoticeDto notice){
         try{
-            System.out.println(notice.getNoticeTitle());
             noticeService.modifyNotice(notice);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
