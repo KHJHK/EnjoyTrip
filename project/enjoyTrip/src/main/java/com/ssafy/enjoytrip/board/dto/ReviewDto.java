@@ -2,6 +2,8 @@ package com.ssafy.enjoytrip.board.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ReviewDto {
     int reviewId;
@@ -11,4 +13,5 @@ public class ReviewDto {
     String reviewContent;
     String reviewPostDate;
     int reviewHits;
+    List<ReviewPhotoDto> photos;
 }
