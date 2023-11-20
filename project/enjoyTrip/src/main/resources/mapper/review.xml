@@ -13,12 +13,25 @@
         <result column="review_hits" property="reviewHits"/>
     </resultMap>
 
+    <resultMap id="photo" type="reviewPhotoDto">
+        <result column="review_id" property="reviewId"/>
+        <result column="order" property="order"/>
+        <result column="original_name" property="originalName"/>
+        <result column="save_name" property="saveName"/>
+        <result column="image_location" property="imageLocation"/>
+    </resultMap>
+
+    <resultMap type="reviewDto" id="photoReview" extends="review">
+        <collection property="photos" column="review_id" javaType="list" ofType="reviewPhotoDto" select="photoInfoList"/>
+    </resultMap>
+
+
     <select id="getReviewList" resultMap="review">
         select *
         from reviews
     </select>
 
-    <select id="getReviewById" parameterType="reviewDto" resultMap="review">
+    <select id="getReviewById" parameterType="int" resultMap="photoReview">
         select *
         from reviews
         where review_id = #{reviewId}
@@ -28,6 +41,9 @@
         insert into reviews
         (board_id, user_no, review_title, review_content, review_post_date)
         values (2, #{userNo}, #{reviewTitle}, #{reviewContent}, now())
+        <selectKey resultType="int" keyProperty="reviewId" order="AFTER">
+            select last_insert_id()
+        </selectKey>
     </insert>
 
     <update id="modifyReview" parameterType="reviewDto">
@@ -46,4 +62,28 @@
         set review_hits = review_hits + 1
         where review_id = #{reviewId}
     </update>
+
+    <insert id="registerFile" parameterType="boardDto">
+        insert into reviews_photo
+        values
+        <foreach collection="photos" item="photoInfo" separator=" , ">
+            (#{reviewId}, #{photoInfo.order}, #{photoInfo.originalName}, #{photoInfo.saveName}, #{photoInfo.imageLocation})
+        </foreach>
+    </insert>
+
+    <select id="photoInfoList" resultMap="photo">
+        select *
+        from reviews_photo
+        where review_id = #{reviewId}
+    </select>
+
+<!--    <delete id="deleteFile" parameterType="photo">-->
+<!--        delete from reviews_photo-->
+<!--        where review_id = #{reviewId} and `order`=#{order};-->
+<!--    </delete>-->
+
+    <delete id="deleteAllFile" parameterType="int">
+        delete from reviews_photo
+        where review_id = #{reviewId}
+    </delete>
 </mapper>
