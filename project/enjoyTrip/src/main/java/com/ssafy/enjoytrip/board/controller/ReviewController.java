@@ -35,7 +35,7 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     @PostMapping
-    public ResponseEntity<?> postReview(@RequestParam MultipartFile[] files,
+    public ResponseEntity<?> postReview(@RequestParam(required = false) MultipartFile[] files,
                                         @RequestParam int userNo,
                                         @RequestParam String reviewTitle,
                                         @RequestParam String reviewContent){
@@ -45,29 +45,31 @@ public class ReviewController {
             review.setReviewTitle(reviewTitle);
             review.setReviewContent(reviewContent);
 
-            String today = new SimpleDateFormat("yyMMdd").format(new Date());
-            String saveFolder = uploadPath + File.separator + today;
-            File folder = new File(saveFolder);
-            if (!folder.exists()){
-                folder.mkdirs();
-            }
-            List<ReviewPhotoDto> fileInfos = new ArrayList<ReviewPhotoDto>();
-            int cnt = 0;
-            for (MultipartFile mfile : files) {
-                ReviewPhotoDto fileInfoDto = new ReviewPhotoDto();
-                String originalFileName = mfile.getOriginalFilename();
-                if (!originalFileName.isEmpty()) {
-                    String saveFileName = UUID.randomUUID().toString()
-                            + originalFileName.substring(originalFileName.lastIndexOf('.'));
-                    fileInfoDto.setImageLocation(today);
-                    fileInfoDto.setOriginalName(originalFileName);
-                    fileInfoDto.setSaveName(saveFileName);
-                    fileInfoDto.setOrder(cnt++);
-                    mfile.transferTo(new File(folder, saveFileName));
+            if(files != null) {
+                String today = new SimpleDateFormat("yyMMdd").format(new Date());
+                String saveFolder = uploadPath + File.separator + today;
+                File folder = new File(saveFolder);
+                if (!folder.exists()) {
+                    folder.mkdirs();
                 }
-                fileInfos.add(fileInfoDto);
+                List<ReviewPhotoDto> fileInfos = new ArrayList<ReviewPhotoDto>();
+                int cnt = 0;
+                for (MultipartFile mfile : files) {
+                    ReviewPhotoDto fileInfoDto = new ReviewPhotoDto();
+                    String originalFileName = mfile.getOriginalFilename();
+                    if (!originalFileName.isEmpty()) {
+                        String saveFileName = UUID.randomUUID().toString()
+                                + originalFileName.substring(originalFileName.lastIndexOf('.'));
+                        fileInfoDto.setImageLocation(today);
+                        fileInfoDto.setOriginalName(originalFileName);
+                        fileInfoDto.setSaveName(saveFileName);
+                        fileInfoDto.setOrder(cnt++);
+                        mfile.transferTo(new File(folder, saveFileName));
+                    }
+                    fileInfos.add(fileInfoDto);
+                }
+                review.setPhotos(fileInfos);
             }
-            review.setPhotos(fileInfos);
 
             reviewService.postReview(review);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
@@ -98,8 +100,42 @@ public class ReviewController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modifyReview(@RequestBody ReviewDto review){
+    public ResponseEntity<?> modifyReview(@RequestParam MultipartFile[] files,
+                                          @RequestParam int reviewId,
+                                          @RequestParam String reviewTitle,
+                                          @RequestParam String reviewContent){
         try{
+            ReviewDto review = new ReviewDto();
+            review.setReviewId(reviewId);
+            review.setReviewTitle(reviewTitle);
+            review.setReviewContent(reviewContent);
+
+            if(files != null) {
+                String today = new SimpleDateFormat("yyMMdd").format(new Date());
+                String saveFolder = uploadPath + File.separator + today;
+                File folder = new File(saveFolder);
+                if (!folder.exists()) {
+                    folder.mkdirs();
+                }
+                List<ReviewPhotoDto> fileInfos = new ArrayList<ReviewPhotoDto>();
+                int cnt = 0;
+                for (MultipartFile mfile : files) {
+                    ReviewPhotoDto fileInfoDto = new ReviewPhotoDto();
+                    String originalFileName = mfile.getOriginalFilename();
+                    if (!originalFileName.isEmpty()) {
+                        String saveFileName = UUID.randomUUID().toString()
+                                + originalFileName.substring(originalFileName.lastIndexOf('.'));
+                        fileInfoDto.setImageLocation(today);
+                        fileInfoDto.setOriginalName(originalFileName);
+                        fileInfoDto.setSaveName(saveFileName);
+                        fileInfoDto.setOrder(cnt++);
+                        mfile.transferTo(new File(folder, saveFileName));
+                    }
+                    fileInfos.add(fileInfoDto);
+                }
+                review.setPhotos(fileInfos);
+            }
+
             reviewService.modifyReview(review);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
