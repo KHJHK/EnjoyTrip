@@ -23,14 +23,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class ReviewController {
-    @Value("${file.path}")
+    @Value("${file.path.upload-review}")
     private String uploadPath;
-
-    @Value("${file.path.upload-images}")
-    private String uploadImagePath;
-
-    @Value("${file.path.upload-files}")
-    private String uploadFilePath;
 
 
     private final ReviewService reviewService;
@@ -100,7 +94,7 @@ public class ReviewController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modifyReview(@RequestParam MultipartFile[] files,
+    public ResponseEntity<?> modifyReview(@RequestParam(required = false) MultipartFile[] files,
                                           @RequestParam int reviewId,
                                           @RequestParam String reviewTitle,
                                           @RequestParam String reviewContent){

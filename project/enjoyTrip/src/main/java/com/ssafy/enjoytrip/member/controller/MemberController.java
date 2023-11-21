@@ -1,15 +1,20 @@
 package com.ssafy.enjoytrip.member.controller;
 
+import com.ssafy.enjoytrip.board.dto.ReviewPhotoDto;
 import com.ssafy.enjoytrip.member.dto.MemberDto;
 import com.ssafy.enjoytrip.member.model.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.lang.reflect.Member;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/members")
@@ -17,6 +22,9 @@ import java.util.Map;
 @Slf4j
 public class MemberController {
 
+    @Value("${file.path.upload-member}")
+    private String uploadPath;
+    private String defaultImage = uploadPath + "default_profile";
     private final MemberService memberService;
 
     @PostMapping("/login")
@@ -42,6 +50,11 @@ public class MemberController {
 
         try {
             memberService.regist(memberDto);
+            String saveFolder = uploadPath + File.separator + memberDto.getUserNo();
+            File folder = new File(saveFolder);
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
             return exceptionHandling(e);
@@ -102,12 +115,34 @@ public class MemberController {
         }
     }
 
+    @PutMapping("/image")
+    public ResponseEntity<?> changeUserImage(@RequestParam(required = false) MultipartFile image, @RequestParam int userNo){
+        try {
+            MemberDto memberDto = new MemberDto();
+            memberDto.setUserNo(userNo);
+            if(image != null) {
+                String saveFolder = uploadPath + File.separator + memberDto.getUserNo();
+                File folder = new File(saveFolder);
+                if (!folder.exists()) {
+                    folder.mkdirs();
+                }
+                String originalFileName = image.getOriginalFilename();
+                if (!originalFileName.isEmpty()) {
+                    String saveFileName = UUID.randomUUID().toString()
+                            + originalFileName.substring(originalFileName.lastIndexOf('.'));
+                    memberDto.setProfileLocation(userNo + "");
+                    memberDto.setProfileOriginalName(originalFileName);
+                    memberDto.setProfileSaveName(saveFileName);
+                    image.transferTo(new File(folder, saveFileName));
+                }
+            }
 
-
-
-
-
-
+            memberService.changeUserImage(memberDto, uploadPath);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
 
     private ResponseEntity<String> exceptionHandling(Exception e) {
         e.printStackTrace();
