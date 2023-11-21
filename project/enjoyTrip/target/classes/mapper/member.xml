@@ -53,7 +53,6 @@
         update members
         set user_name = #{userName}, email = #{email}, nickname = #{nickname}, birthday = #{birthday}
         where user_no = #{userNo}
-
     </update>
 
     <update id="changeUserStatus" parameterType="memberDto">

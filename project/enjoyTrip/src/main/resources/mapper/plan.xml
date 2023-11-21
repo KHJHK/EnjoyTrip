@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.board.model.mapper.PlanMapper">
+    <resultMap id="plan" type="planDto">
+        <id column="plan_id" property="planId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="user_no" property="userNo"/>
+        <result column="user_name" property="userName"/>
+        <result column="plan_title" property="planTitle"/>
+        <result column="plan_content" property="planContent"/>
+        <result column="plan_subtitle" property="planSubtitle"/>
+        <result column="plan_post_Date" property="planPostDate"/>
+        <result column="plan_hits" property="planHits"/>
+    </resultMap>
+
+    <resultMap id="sightInfos" type="planSightsDto">
+        <result column="plan_id" property="planId"/>
+        <result column="order" property="order"/>
+        <result column="content_id" property="contentId"/>
+    </resultMap>
+
+    <resultMap type="planDto" id="planAllInfo" extends="plan">
+        <collection property="sights" column="plan_id" javaType="list" ofType="planSightsDto" select="sightInfoList"/>
+    </resultMap>
+
+    <select id="getPlanList" resultMap="plan">
+        select p.*, m.user_name, m.nickname
+        from plans p
+        join members m
+        on p.user_no = m.user_no
+    </select>
+
+    <select id="getPlanById" parameterType="int" resultMap="planAllInfo">
+        select p.*, m.user_name, m.nickname
+        from plans p
+        join members m
+        on p.user_no = m.user_no
+        where p.plan_id = #{planId}
+    </select>
+
+    <select id="getMyPlans" parameterType="int" resultMap="planAllInfo">
+        select p.*, m.user_name, m.nickname
+        from plans p
+        join members m
+        on p.user_no = m.user_no
+        where p.user_no = #{userNo}
+    </select>
+
+    <insert id="postPlan" parameterType="planDto">
+        insert into plans
+        (board_id, user_no, plan_title, plan_content, plan_subtitle, plan_post_date)
+        values (3, #{userNo}, #{planTitle}, #{planContent}, #{planSubtitle}, now())
+        <selectKey resultType="int" keyProperty="planId" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="modifyPlan" parameterType="planDto">
+        update plans
+        set plan_title = #{planTitle}, plan_content = #{planContent},
+            plan_subtitle=#{planSubtitle}, plan_secret = #{planSecret}
+        where plan_id = #{planId}
+    </update>
+
+    <delete id="deletePlan" parameterType="int">
+        delete from plans
+        where plan_id = #{planId}
+    </delete>
+
+    <update id="increaseHits" parameterType="int">
+        update plans
+        set plan_hits = plan_hits + 1
+        where plan_id = #{planId}
+    </update>
+
+    <insert id="registerSight" parameterType="planDto">
+        insert into plans_sights
+        values
+        <foreach collection="sights" item="sightInfo" separator=" , ">
+            (#{planId}, #{sightInfo.order}, #{sightInfo.contentId})
+        </foreach>
+    </insert>
+
+    <select id="sightInfoList" resultMap="sightInfos">
+        select *
+        from plans_sights
+        where plan_id = #{planId}
+    </select>
+
+    <delete id="deleteAllSights" parameterType="int">
+        delete from plans_sights
+        where plan_id = #{planId}
+    </delete>
+
+</mapper>
