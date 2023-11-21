@@ -16,4 +16,6 @@ public interface MemberService {
     void deleteUser(int userNo);
     String findId(String userName, String email);
     String findPassword(String userName, String email, String userId);
+
+    void changeUserImage(MemberDto memberDto, String path);
 }

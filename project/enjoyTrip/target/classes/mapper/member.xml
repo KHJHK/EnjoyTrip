@@ -15,11 +15,13 @@
         <result column="role" property="role"/>
         <result column="status" property="status"/>
         <result column="regist_date" property="registDate"/>
-        <result column="profile_image" property="profileImage"/>
+        <result column="profile_location" property="profileLocation"/>
+        <result column="profile_original_name" property="profileOriginalName"/>
+        <result column="profile_save_name" property="profileSaveName"/>
     </resultMap>
 
     <select id="login" parameterType="memberDto" resultMap="member">
-        select user_no, user_id, user_name, nickname, role, profile_image
+        select user_no, user_id, user_name, nickname, role, profile_location, profile_save_name
         from members
         where user_id = #{userId} and user_password = #{userPassword} and status = 0
     </select>
@@ -36,6 +38,9 @@
         values(#{userId}, #{userPassword},#{userName},
                #{email}, #{nickname}, #{birthday},
                now());
+        <selectKey resultType="int" keyProperty="userNo" order="AFTER">
+            select last_insert_id()
+        </selectKey>
     </insert>
 
     <select id="getUserByNo" parameterType="int" resultMap="member">
@@ -46,7 +51,7 @@
 
     <update id="modifyUserInfo" parameterType="memberDto">
         update members
-        set user_name = #{userName}, email = #{email}, nickname = #{nickname}, birthday = #{birthday}, profile_image=#{profileImage}
+        set user_name = #{userName}, email = #{email}, nickname = #{nickname}, birthday = #{birthday}
         where user_no = #{userNo}
 
     </update>
@@ -73,5 +78,11 @@
         from members
         where user_name = #{userName} and email = #{email} and user_id = #{userId}
     </select>
+
+    <update id="changeUserImage" parameterType="memberDto">
+        update members
+        set profile_location = #{profileLocation}, profile_original_name = #{profileOriginalName}, profile_save_name = #{profileSaveName}
+        where user_no = #{userNo}
+    </update>
 
 </mapper>

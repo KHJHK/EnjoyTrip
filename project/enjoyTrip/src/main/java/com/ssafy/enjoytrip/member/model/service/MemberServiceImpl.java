@@ -6,6 +6,7 @@ import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,14 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public String findPassword(String userName, String email, String userId) {
         return memberMapper.findPassword(userName, email, userId);
+    }
+
+    @Override
+    public void changeUserImage(MemberDto memberDto, String path) {
+        MemberDto originalMemberDto = memberMapper.getUserByNo(memberDto.getUserNo());
+        File file = new File(path + File.separator + originalMemberDto.getProfileLocation() + File.separator + originalMemberDto.getProfileSaveName());
+        file.delete();
+        memberMapper.changeUserImage(memberDto);
     }
 
 }

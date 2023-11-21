@@ -15,5 +15,7 @@ public class MemberDto {
     String role;
     int status;
     String registDate;
-    String profileImage;
+    String profileOriginalName;
+    String profileSaveName;
+    String profileLocation;
 }
