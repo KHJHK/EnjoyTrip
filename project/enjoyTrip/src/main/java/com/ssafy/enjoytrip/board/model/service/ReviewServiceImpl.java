@@ -27,7 +27,6 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public void postReview(ReviewDto reviewDto) {
         reviewMapper.postReview(reviewDto);
-        System.out.println(reviewDto.getReviewId());
         List<ReviewPhotoDto> photos = reviewDto.getPhotos();
         if (photos != null && !photos.isEmpty()) {
             reviewMapper.registerFile(reviewDto);
@@ -37,6 +36,11 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public void modifyReview(ReviewDto reviewDto) {
         reviewMapper.modifyReview(reviewDto);
+        reviewMapper.deleteAllFile(reviewDto.getReviewId());
+        List<ReviewPhotoDto> photos = reviewDto.getPhotos();
+        if (photos != null && !photos.isEmpty()) {
+            reviewMapper.registerFile(reviewDto);
+        }
     }
 
     @Override
