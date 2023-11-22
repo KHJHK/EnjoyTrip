@@ -42,11 +42,13 @@ public class CommentServiceImpl implements CommentService{
         int order = 0;
         int depth = 0;
         int rootId = commentDto.getArticleId();
+        int rootBoardId = commentDto.getBoardId();
 
         if(commentDto.getParentBoardId() == 6){
             CommentDto parentComment = commentMapper.getComment(commentDto.getArticleId());
             depth = parentComment.getDepth() + 1;
             rootId = parentComment.getRootId();
+            rootBoardId = parentComment.getRootBoardId();
         }
         String orderStr = commentMapper.findMaxOrder(commentDto);
         System.out.println(orderStr);
@@ -56,6 +58,7 @@ public class CommentServiceImpl implements CommentService{
         }
 
         commentDto.setRootId(rootId);
+        commentDto.setRootBoardId(rootBoardId);
         commentDto.setDepth(depth);
         commentDto.setOrder(order);
         commentMapper.postComment(commentDto);

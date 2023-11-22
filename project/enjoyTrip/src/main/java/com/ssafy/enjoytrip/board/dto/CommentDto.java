@@ -15,4 +15,5 @@ public class CommentDto {
     int order;
     int depth;
     int rootId;
+    int rootBoardId;
 }

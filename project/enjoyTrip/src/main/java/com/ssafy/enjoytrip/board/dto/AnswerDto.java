@@ -11,4 +11,6 @@ public class AnswerDto {
     String answerContent;
     String answerPostDate;
     String answerHits;
+    String userName;
+    String nickname;
 }

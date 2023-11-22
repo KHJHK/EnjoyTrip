@@ -15,6 +15,7 @@
         <result column="order" property="order"/>
         <result column="depth" property="depth"/>
         <result column="root_id" property="rootId"/>
+        <result column="root_board_id" property="rootBoardId"/>
     </resultMap>
 
     <select id="getAllBoardsCommentList" resultMap="comment">
@@ -47,9 +48,9 @@
 
     <insert id="postComment" parameterType="commentDto">
         insert into comments
-        (user_no, board_id, parent_board_id, article_id, comment, create_date, deleteYN, `order`, depth, root_id)
+        (user_no, board_id, parent_board_id, article_id, comment, create_date, deleteYN, `order`, depth, root_id, root_board_id)
         values
-        (#{userNo}, 6, #{parentBoardId}, #{articleId}, #{comment}, now(), #{deleteYN}, #{order}, #{depth}, #{rootId})
+        (#{userNo}, 6, #{parentBoardId}, #{articleId}, #{comment}, now(), #{deleteYN}, #{order}, #{depth}, #{rootId}, #{rootBoardId})
     </insert>
 
     <update id="modifyComment" parameterType="commentDto">

@@ -11,7 +11,34 @@
         <result column="notice_content" property="noticeContent"/>
         <result column="notice_post_date" property="noticePostDate"/>
         <result column="notice_hits" property="noticeHits"/>
+        <result column="user_name" property="userName"/>
     </resultMap>
+
+    <resultMap id="comment" type="commentDto">
+        <id column="commentId" property="commentId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="user_no" property="userNo"/>
+        <result column="parent_board_id" property="parentBoardId"/>
+        <result column="article_id" property="articleId"/>
+        <result column="comment" property="comment"/>
+        <result column="create_date" property="createDate"/>
+        <result column="deleteYN" property="deleteYN"/>
+        <result column="order" property="order"/>
+        <result column="depth" property="depth"/>
+        <result column="root_id" property="rootId"/>
+        <result column="root_board_id" property="rootBoardId"/>
+    </resultMap>
+
+    <resultMap type="noticeDto" id="noticeInfo" extends="notice">
+        <collection property="comments" column="{noticeId=notice_id, boardId=board_id}" javaType="list" ofType="commentDto" select="commentList"/>
+    </resultMap>
+
+    <select id="commentList" resultMap="comment">
+        select *
+        from comments
+        where root_id = #{noticeId} and root_board_id = #{boardId}
+        order by depth, `order`
+    </select>
     
     <insert id="postNotice" parameterType="noticeDto">
         insert
@@ -21,13 +48,17 @@
     </insert>
 
     <select id="getNoticeList" resultMap="notice">
-        select *
-        from notices
+        select n.*, m.user_name, m.nickname
+        from notices n
+        join members m
+        on n.user_no = m.user_no
     </select>
 
-    <select id="getNoticeById" parameterType="int" resultMap="notice">
-        select *
-        from notices
+    <select id="getNoticeById" parameterType="int" resultMap="noticeInfo">
+        select n.*, m.user_name, m.nickname
+        from notices n
+        join members m
+        on n.user_no = m.user_no
         where notice_id = #{noticeId}
     </select>
 
