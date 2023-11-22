@@ -21,7 +21,7 @@
     </resultMap>
 
     <select id="login" parameterType="memberDto" resultMap="member">
-        select user_no, user_id, user_name, nickname, role, profile_location, profile_save_name
+        select user_no, user_id, user_name, nickname, role, profile_location, profile_original_name, profile_save_name
         from members
         where user_id = #{userId} and user_password = #{userPassword} and status = 0
     </select>
