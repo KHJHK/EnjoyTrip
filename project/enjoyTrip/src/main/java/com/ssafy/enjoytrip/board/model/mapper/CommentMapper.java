@@ -13,6 +13,6 @@ public interface CommentMapper {
     List<CommentDto> getArticleCommentsList(@Param("boardId") int boardId, @Param("articleId") int articleId);
     void postComment(CommentDto commentDto);
     void modifyComment(CommentDto commentDto);
-    void deleteArticleComments(@Param("boardId")int boardId, @Param("articleId") int articleId);
+    void deleteArticleComments(int boardId, int articleId);
     String findMaxOrder(CommentDto commentDto);
 }

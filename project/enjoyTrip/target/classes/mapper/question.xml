@@ -13,16 +13,46 @@
         <result column="question_post_date" property="questionPostDate"/>
         <result column="question_secret" property="questionSecret"/>
         <result column="question_hits" property="questionHits"/>
+        <result column="user_name" property="userName"/>
+        <result column="nickname" property="nickname"/>
     </resultMap>
 
-    <select id="getQuestionList" resultMap="question">
-        select *
-        from questions;
+    <resultMap id="answer" type="answerDto">
+        <result column="question_id" property="questionId"/>
+        <result column="board_id" property="boardId"/>
+        <result column="user_no" property="userNo"/>
+        <result column="answer_title" property="answerTitle"/>
+        <result column="answer_content" property="answerContent"/>
+        <result column="answer_post_date" property="answerPostDate"/>
+        <result column="answer_hits" property="answerHits"/>
+        <result column="user_name" property="userName"/>
+        <result column="nickname" property="nickname"/>
+    </resultMap>
+
+    <resultMap type="questionDto" id="questionInfo" extends="question">
+        <collection property="answer" column="question_id" javaType="answerDto" ofType="answerDto" select="getAnswer"/>
+    </resultMap>
+
+    <select id="getAnswer" resultMap="answer">
+        select a.*, m.user_name, m.nickname
+        from answers a
+        join members m
+        on a.user_no = m.user_no
+        where question_id = #{questionId}
     </select>
 
-    <select id="getQuestionById" parameterType="int" resultMap="question">
-        select *
-        from questions
+    <select id="getQuestionList" resultMap="question">
+        select q.*, m.user_name, m.nickname
+        from questions q
+        join members m
+        on q.user_no = m.user_no;
+    </select>
+
+    <select id="getQuestionById" parameterType="int" resultMap="questionInfo">
+        select q.*, m.user_name, m.nickname
+        from questions q
+        join members m
+        on q.user_no = m.user_no
         where question_id = #{questionId}
     </select>
 

@@ -1,5 +1,6 @@
 package com.ssafy.enjoytrip.board.model.mapper;
 
+import com.ssafy.enjoytrip.board.dto.AnswerDto;
 import com.ssafy.enjoytrip.board.dto.QuestionDto;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface QuestionMapper {
     void modifyQuestion(QuestionDto questionDto);
     void deleteQuestion(int questionId);
     void increaseHit(int questionId);
+    AnswerDto getAnswer(int questionId);
 }
