@@ -11,6 +11,8 @@
         <result column="review_content" property="reviewContent"/>
         <result column="review_post_date" property="reviewPostDate"/>
         <result column="review_hits" property="reviewHits"/>
+        <result column="user_name" property="userName"/>
+        <result column="nickname" property="nickname"/>
     </resultMap>
 
     <resultMap id="photo" type="reviewPhotoDto">
@@ -25,15 +27,18 @@
         <collection property="photos" column="review_id" javaType="list" ofType="reviewPhotoDto" select="photoInfoList"/>
     </resultMap>
 
-
     <select id="getReviewList" resultMap="review">
-        select *
-        from reviews
+        select r.*, m.user_name, m.nickname
+        from reviews r
+        join members m
+        on r.user_no = m.user_no
     </select>
 
     <select id="getReviewById" parameterType="int" resultMap="photoReview">
-        select *
-        from reviews
+        select r.*, m.user_name, m.nickname
+        from reviews r
+        join members m
+        on r.user_no = m.user_no
         where review_id = #{reviewId}
     </select>
 
