@@ -64,6 +64,7 @@ public class QAController {
     @DeleteMapping("/{questionId}")
     public ResponseEntity<?> deleteQuestion(@PathVariable int questionId){
         try{
+            answerService.deleteAnswer(questionId);
             questionService.deleteQuestion(questionId);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){

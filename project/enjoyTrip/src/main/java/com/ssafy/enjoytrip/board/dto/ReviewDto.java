@@ -13,5 +13,7 @@ public class ReviewDto {
     String reviewContent;
     String reviewPostDate;
     int reviewHits;
+    String userName;
+    String nickname;
     List<ReviewPhotoDto> photos;
 }
