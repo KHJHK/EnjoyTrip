@@ -31,8 +31,6 @@ public class PlanController {
     public ResponseEntity<?> getPlanList(){
         try{
             List<PlanDto> planList = planService.getPlanList();
-            System.out.println(planList.get(0).getPlanPostDate());
-            System.out.println(planList.get(0).getUserName());
             return new ResponseEntity<List<PlanDto>>(planList, HttpStatus.OK);
         } catch (Exception e){
             return exceptionHandling(e);

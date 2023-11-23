@@ -34,9 +34,15 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void modifyReview(ReviewDto reviewDto) {
+    public void modifyReview(ReviewDto reviewDto, String path) {
+        int reviewId = reviewDto.getReviewId();
+        List<ReviewPhotoDto> fileList = reviewMapper.photoInfoList(reviewId);
+        for(ReviewPhotoDto fileInfoDto : fileList) {
+            File file = new File(path + File.separator + fileInfoDto.getImageLocation() + File.separator + fileInfoDto.getSaveName());
+            file.delete();
+        }
         reviewMapper.modifyReview(reviewDto);
-        reviewMapper.deleteAllFile(reviewDto.getReviewId());
+        reviewMapper.deleteAllFile(reviewId);
         List<ReviewPhotoDto> photos = reviewDto.getPhotos();
         if (photos != null && !photos.isEmpty()) {
             reviewMapper.registerFile(reviewDto);

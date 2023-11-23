@@ -61,7 +61,7 @@ public class QAController {
         }
     }
 
-    @DeleteMapping("/{questionId}")
+    @DeleteMapping("/{questio   nId}")
     public ResponseEntity<?> deleteQuestion(@PathVariable int questionId){
         try{
             answerService.deleteAnswer(questionId);

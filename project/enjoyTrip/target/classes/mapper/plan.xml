@@ -19,6 +19,14 @@
         <result column="plan_id" property="planId"/>
         <result column="order" property="order"/>
         <result column="content_id" property="contentId"/>
+        <result column="content_type_id" property="contentTypeId"/>
+        <result column="title" property="title"/>
+        <result column="first_image" property="firstImage"/>
+        <result column="first_image2" property="firstImage2"/>
+        <result column="sido_code" property="sidoCode"/>
+        <result column="gugun_code" property="gugunCode"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
     </resultMap>
 
     <resultMap type="planDto" id="planAllInfo" extends="plan">
@@ -84,8 +92,10 @@
     </insert>
 
     <select id="sightInfoList" resultMap="sightInfos">
-        select *
-        from plans_sights
+        select ps.*, ai.*
+        from plans_sights ps
+        join attraction_info ai
+        on ps.content_id = ai.content_id
         where plan_id = #{planId}
     </select>
 

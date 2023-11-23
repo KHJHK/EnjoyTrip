@@ -129,8 +129,7 @@ public class ReviewController {
                 }
                 review.setPhotos(fileInfos);
             }
-
-            reviewService.modifyReview(review);
+            reviewService.modifyReview(review, uploadPath);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
             return exceptionHandling(e);
