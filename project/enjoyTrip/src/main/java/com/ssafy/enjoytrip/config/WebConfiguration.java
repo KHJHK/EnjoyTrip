@@ -28,7 +28,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry
                 .addInterceptor(jwtInterceptor)
                 .addPathPatterns("/**", "members/members")
-                .excludePathPatterns("/members/login", "/members/regist", "/error");
+                .excludePathPatterns("/members/login", "/members", "/error");
     }
 
     @Override
