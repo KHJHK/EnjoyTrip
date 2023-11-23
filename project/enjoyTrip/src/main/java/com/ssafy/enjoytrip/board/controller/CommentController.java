@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.board.controller;
 
 import com.ssafy.enjoytrip.board.dto.CommentDto;
 import com.ssafy.enjoytrip.board.model.service.CommentService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<?> postComment(@RequestBody CommentDto comment){
         try {
+            comment.setUserNo(JWTUtil.userNo);
             commentService.postComment(comment);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -70,6 +72,9 @@ public class CommentController {
     @PutMapping
     public ResponseEntity<?> modifyComment(@RequestBody CommentDto commentDto){
         try{
+            if(JWTUtil.userNo != commentDto.getUserNo()){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             commentService.modifyComment(commentDto);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
@@ -80,6 +85,10 @@ public class CommentController {
     @DeleteMapping("/{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable int commentId){
         try{
+            int userNo = commentService.getComment(commentId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             commentService.deleteComment(commentId);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){

@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.board.controller;
 
 import com.ssafy.enjoytrip.board.dto.PlanDto;
 import com.ssafy.enjoytrip.board.model.service.PlanService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class PlanController {
     @PostMapping
     public ResponseEntity<?> postReview(@RequestBody PlanDto plan){
         try {
+            plan.setUserNo(JWTUtil.userNo);
             planService.postPlan(plan);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -50,6 +52,9 @@ public class PlanController {
     @PutMapping("/{planId}")
     public ResponseEntity<?> modifyPlan(@RequestBody PlanDto plan){
         try{
+            if(JWTUtil.userNo != plan.getUserNo()){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             planService.modifyPlan(plan);
             return new ResponseEntity<PlanDto>(plan, HttpStatus.OK);
         } catch (Exception e){
@@ -70,6 +75,10 @@ public class PlanController {
     @DeleteMapping("/{planId}")
     public ResponseEntity<?> deletePlan(@PathVariable int planId){
         try{
+            int userNo = planService.getPlanById(planId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             planService.deletePlan(planId);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){

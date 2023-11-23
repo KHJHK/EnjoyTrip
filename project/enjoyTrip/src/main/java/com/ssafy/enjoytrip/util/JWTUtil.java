@@ -14,6 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JWTUtil {
 
     private static final String SECRET_KEY = "ssafy"; // 시크릿 키, 토큰 생성과 검증 시 필요
+    public static int userNo;
 
     // JWT 토큰 생성 메소드
     public static String generateToken(MemberDto member) {
@@ -28,12 +29,13 @@ public class JWTUtil {
         claims.put("userId", member.getUserId());
         claims.put("userName", member.getUserName());
         claims.put("role", member.getRole());
+        claims.put("userNo", member.getUserNo());
 
         return Jwts.builder()
                 .setHeader(header)
                 .setClaims(claims)	//정보 담기
-//				.setExpiration(new Date(now + 1000*expirationSecond)) // 토큰 만료 시간
-                .setExpiration(new Date(1699591091))
+				.setExpiration(new Date(now + 1000*expirationSecond)) // 토큰 만료 시간
+//                .setExpiration(new Date(1699591091))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)		  // encoding 방식
                 .compact();	//토큰 생성
     }

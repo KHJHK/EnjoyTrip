@@ -3,6 +3,7 @@ package com.ssafy.enjoytrip.board.controller;
 import com.ssafy.enjoytrip.board.dto.ReviewDto;
 import com.ssafy.enjoytrip.board.dto.ReviewPhotoDto;
 import com.ssafy.enjoytrip.board.model.service.ReviewService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,12 +31,11 @@ public class ReviewController {
     private final ReviewService reviewService;
     @PostMapping
     public ResponseEntity<?> postReview(@RequestParam(required = false) MultipartFile[] files,
-                                        @RequestParam int userNo,
                                         @RequestParam String reviewTitle,
                                         @RequestParam String reviewContent){
         try {
             ReviewDto review = new ReviewDto();
-            review.setUserNo(userNo);
+            review.setUserNo(JWTUtil.userNo);
             review.setReviewTitle(reviewTitle);
             review.setReviewContent(reviewContent);
 
@@ -96,9 +96,13 @@ public class ReviewController {
     @PutMapping
     public ResponseEntity<?> modifyReview(@RequestParam(required = false) MultipartFile[] files,
                                           @RequestParam int reviewId,
+                                          @RequestParam int userNo,
                                           @RequestParam String reviewTitle,
                                           @RequestParam String reviewContent){
         try{
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             ReviewDto review = new ReviewDto();
             review.setReviewId(reviewId);
             review.setReviewTitle(reviewTitle);
@@ -139,6 +143,10 @@ public class ReviewController {
     @DeleteMapping("/{reviewId}")
     public ResponseEntity<?> deleteReview(@PathVariable int reviewId){
         try{
+            int userNo = reviewService.getReviewById(reviewId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             reviewService.deleteReview(reviewId, uploadPath);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
