@@ -3,6 +3,7 @@ package com.ssafy.enjoytrip.member.controller;
 import com.ssafy.enjoytrip.board.dto.ReviewPhotoDto;
 import com.ssafy.enjoytrip.member.dto.MemberDto;
 import com.ssafy.enjoytrip.member.model.service.MemberService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,9 +62,9 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/{userNo}")
-    ResponseEntity<?> getUserByNo(@PathVariable("userNo") int no) {
-        MemberDto member = memberService.getUserByNo(no);
+    @GetMapping("/mypage")
+    ResponseEntity<?> getUserByNo() {
+        MemberDto member = memberService.getUserByNo(JWTUtil.userNo);
         return new ResponseEntity<MemberDto>(member, HttpStatus.OK);
     }
 
