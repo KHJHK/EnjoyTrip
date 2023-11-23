@@ -8,7 +8,7 @@ public interface ReviewService {
     List<ReviewDto> getReviewList();
     ReviewDto getReviewById(int reviewId);
     void postReview(ReviewDto reviewDto);
-    void modifyReview(ReviewDto reviewDto);
+    void modifyReview(ReviewDto reviewDto, String path);
     void deleteReview(int reviewId, String path);
     void increaseHits(int reviewId);
 }
