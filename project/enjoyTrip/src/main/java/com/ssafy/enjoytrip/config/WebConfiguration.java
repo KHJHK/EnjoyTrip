@@ -1,5 +1,6 @@
 package com.ssafy.enjoytrip.config;
 
+import com.ssafy.enjoytrip.interceptor.JwtInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,15 +20,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebConfiguration implements WebMvcConfigurer {
 
-//    private final JwtInterceptor jwtInterceptor;
+    private final JwtInterceptor jwtInterceptor;
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//
-//        registry
-//                .addInterceptor(jwtInterceptor)
-//                .addPathPatterns("/board/**");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        registry
+                .addInterceptor(jwtInterceptor)
+                .addPathPatterns("/**", "members/members")
+                .excludePathPatterns("/members/login", "/members/regist", "/error");
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -38,7 +40,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 //		Allow all headers.
 //		Set max age to 1800 seconds (30 minutes).
         registry.addMapping("/**").allowedOrigins("*")
-		.allowedOrigins("http://localhost:8080", "http://localhost:8081", "http://localhost:3000")
+		.allowedOrigins("http://localhost:8080", "http://localhost:8081", "http://localhost:3000", "**")
 				.allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(),
 						HttpMethod.DELETE.name(), HttpMethod.HEAD.name(), HttpMethod.OPTIONS.name(),
 						HttpMethod.PATCH.name())

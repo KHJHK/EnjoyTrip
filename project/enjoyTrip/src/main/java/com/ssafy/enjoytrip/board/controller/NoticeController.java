@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.board.controller;
 
 import com.ssafy.enjoytrip.board.dto.NoticeDto;
 import com.ssafy.enjoytrip.board.model.service.NoticeService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class NoticeController {
     @PostMapping
     public ResponseEntity<?> postNotice(@RequestBody NoticeDto notice){
         try {
+            notice.setUserNo(JWTUtil.userNo);
             noticeService.postNotice(notice);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -51,6 +53,9 @@ public class NoticeController {
     @PutMapping
     public ResponseEntity<?> modifyNotice(@RequestBody NoticeDto notice){
         try{
+            if(JWTUtil.userNo != notice.getUserNo()){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             noticeService.modifyNotice(notice);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
@@ -61,6 +66,10 @@ public class NoticeController {
     @DeleteMapping("/{noticeId}")
     public ResponseEntity<?> deleteNotice(@PathVariable int noticeId){
         try{
+            int userNo = noticeService.getNoticeById(noticeId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             noticeService.deleteNotice(noticeId);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){

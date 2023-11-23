@@ -5,6 +5,7 @@ import com.ssafy.enjoytrip.board.dto.NoticeDto;
 import com.ssafy.enjoytrip.board.dto.QuestionDto;
 import com.ssafy.enjoytrip.board.model.service.AnswerService;
 import com.ssafy.enjoytrip.board.model.service.QuestionService;
+import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,7 @@ public class QAController {
     @PostMapping
     public ResponseEntity<?> postQuestion(@RequestBody QuestionDto question){
         try {
+            question.setUserNo(JWTUtil.userNo);
             questionService.postQuestion(question);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -54,6 +56,9 @@ public class QAController {
     @PutMapping
     public ResponseEntity<?> modifyQuestion(@RequestBody QuestionDto question){
         try{
+            if(JWTUtil.userNo != question.getUserNo()){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             questionService.modifyQuestion(question);
             return new ResponseEntity<String>(HttpStatus.OK);
         } catch (Exception e){
@@ -61,9 +66,13 @@ public class QAController {
         }
     }
 
-    @DeleteMapping("/{questio   nId}")
+    @DeleteMapping("/{questionId}")
     public ResponseEntity<?> deleteQuestion(@PathVariable int questionId){
         try{
+            int userNo = questionService.getQuestionById(questionId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             answerService.deleteAnswer(questionId);
             questionService.deleteQuestion(questionId);
             return new ResponseEntity<String>(HttpStatus.OK);
@@ -85,6 +94,7 @@ public class QAController {
     @PostMapping("/{questionId}/answers")
     public ResponseEntity<?> postAnswer(@RequestBody AnswerDto answerDto){
         try{
+            answerDto.setUserNo(JWTUtil.userNo);
             answerService.postAnswer(answerDto);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -95,6 +105,9 @@ public class QAController {
     @PutMapping("/{questionId}/answers")
     public ResponseEntity<?> modifyAnswer(@RequestBody AnswerDto answerDto){
         try{
+            if(JWTUtil.userNo != answerDto.getUserNo()){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             answerService.modifyAnswer(answerDto);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }catch (Exception e){
@@ -105,6 +118,10 @@ public class QAController {
     @DeleteMapping("/{questionId}/answers")
     public ResponseEntity<?> deleteAnswer(@PathVariable int questionId){
         try{
+            int userNo = answerService.getAnswerByQuestionId(questionId).getUserNo();
+            if(JWTUtil.userNo != userNo){
+                return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            }
             answerService.deleteAnswer(questionId);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }catch (Exception e){
