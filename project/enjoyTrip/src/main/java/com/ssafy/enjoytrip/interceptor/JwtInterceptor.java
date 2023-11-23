@@ -20,6 +20,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //GET, OPTIONS 요청의 경우 모두 허용
         String method = request.getMethod();
+        if(method.equals("OPTIONS")){
+            return true;
+        }
         if(method.equals("GET") && !(request.getRequestURI().equals("/members") || request.getRequestURI().equals("/members/mypage"))){
             return true;
         }
